@@ -1,0 +1,22 @@
+.cards {
+    &_wrapper {
+        margin-top: 22px;
+    }
+    &_img {
+        background-repeat: inherit;
+        text-align: center;
+        height: 26rem;
+        // width: 12rem;
+    }
+    &_body {
+        max-height: 200px;
+    }
+    &_footer {
+        display: flex;
+    }
+    &_price {
+        font-weight: 500;
+        margin-top: 4px;
+        margin-left: 6rem;
+    }
+}

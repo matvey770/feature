@@ -1,0 +1,25 @@
+.footer {
+    margin-top: 120px;
+    &_name {
+        font-size: 42px;
+        margin-left: 40px;
+        margin-top: 40px;
+        position: relative;
+        color: dimgray;
+    }
+    &_number {
+        font-size: 20px;
+        margin-left: 40px;
+        color: dimgray;
+    }
+    &_menu {
+        text-align: right;
+        &-item {
+            margin-top: 12px;
+            a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+}
