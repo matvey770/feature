@@ -1,38 +1,51 @@
-import { products } from '../data/products';
+import {React, useState} from 'react'
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { CSSTransition } from 'react-transition-group';
 
 import './featureCards.scss'
 
-const FeatureCards = () => {
+const FeatureCards = ({product}) => {
+
+    const [activeSize, setActiveSize] = useState(false)
+
+    const CardsContainer = ({product}) => {
+        const items = product.size.map((item) => {
+            return (
+                <button key={item} className='cards_container-sizebutton'>{item}</button>
+            )
+        })
+
         return (
-            <Container>
-                <Row xs={2} md={4} className="g-4">
-                {products.map(item => (
-                    <Col>
-                        <Card className='cards_wrapper'>
-                            <Card.Img variant="top" src={item.img} className="cards_img"/>
-                            <Card.Body>
-                                <Card.Title>{item.title}</Card.Title>
-                                    <Card.Text>
-                                        {item.descr}
-                                    </Card.Text>
-                                <div className='cards_footer'>
-                                    <Button variant='dark'>В корзину</Button>
-                                    <div className='cards_price'>{item.price} руб.</div>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-                </Row>
-            </Container>
-          );
+            <div className='cards_container'>
+                {items}
+            </div>
+        )
+    }
+
+    return (
+        <Card key={product.id} className='cards'>
+            <Card.Img variant="top" src={product.img} className="cards_img"/>
+            <Card.Body>
+                <Card.Title>{product.title}</Card.Title>
+                    <Card.Text>
+                        {product.descr}
+                    </Card.Text>
+                <div className='cards_footer'>
+                    <Button onClick={() => {
+                                setActiveSize(!activeSize)}}
+                            className='cards_footer-button' 
+                            variant='dark'>В корзину
+                    </Button>
+                    <CSSTransition in={activeSize} timeout={300} classNames='cards_container'>
+                        <CardsContainer product={product}/>
+                    </CSSTransition>
+                        {!activeSize && <div className='cards_footer-price'>{product.price} руб.</div>}
+                </div>
+            </Card.Body>
+        </Card>
+    );
 }
-    
 
 export default FeatureCards;

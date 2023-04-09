@@ -1,0 +1,10 @@
+.app {
+  &_products {
+    margin-top: 40px;
+    max-width: 1296px;
+    &-row {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

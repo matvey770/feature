@@ -2,13 +2,17 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import 'bootstrap/dist/css/bootstrap.min.css'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './appHeader.scss'
+import logo from "../../img/feature.jpg"
 
 const AppHeader = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Feature</Navbar.Brand>
+        {/* <Navbar.Brand href="#">Feature</Navbar.Brand> */}
+        <img src={logo} alt="logo" className='appheader_logo'/>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
