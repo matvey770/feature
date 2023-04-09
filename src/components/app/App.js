@@ -1,5 +1,5 @@
 import React from 'react';
-import FeatureHeader from '../appHeader/FeatureHeader';
+import FeatureHeader from '../featureHeader/FeatureHeader';
 import MainSlider from '../mainSlider/MainSlider';
 import FeatureCards from '../featureCards/FeatureCards';
 import FeatureFooter from '../featureFooter/FeatureFooter';
