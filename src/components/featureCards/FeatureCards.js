@@ -28,7 +28,7 @@ const FeatureCards = ({product}) => {
         <Card key={product.id} className='cards'>
             <Card.Img variant="top" src={product.img} className="cards_img"/>
             <Card.Body>
-                <Card.Title>{product.title}</Card.Title>
+                <Card.Title className='text'>{product.title}</Card.Title>
                     <Card.Text>
                         {product.descr}
                     </Card.Text>
