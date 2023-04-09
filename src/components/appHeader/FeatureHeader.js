@@ -3,10 +3,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-import './appHeader.scss'
+import './featureHeader.scss'
 import logo from "../../img/feature.jpg"
 
-const AppHeader = () => {
+const FeatureHeader = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -36,4 +36,4 @@ const AppHeader = () => {
   );
 }
 
-export default AppHeader;
+export default FeatureHeader;

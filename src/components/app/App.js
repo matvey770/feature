@@ -1,5 +1,5 @@
 import React from 'react';
-import AppHeader from '../appHeader/AppHeader';
+import FeatureHeader from '../appHeader/FeatureHeader';
 import MainSlider from '../mainSlider/MainSlider';
 import FeatureCards from '../featureCards/FeatureCards';
 import FeatureFooter from '../featureFooter/FeatureFooter';
@@ -15,7 +15,7 @@ import './App.scss'
 const App = () => {
   return (
     <div className='app'>    
-      <AppHeader/>
+      <FeatureHeader/>
       <MainSlider/>
           <Container className='app_products'>
             <Row xs={2} md={4} className='app_products-row'>
