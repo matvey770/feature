@@ -3,6 +3,7 @@ import FeatureHeader from '../featureHeader/FeatureHeader';
 import MainSlider from '../mainSlider/MainSlider';
 import FeatureCards from '../featureCards/FeatureCards';
 import FeatureFooter from '../featureFooter/FeatureFooter';
+import FeatureCart from '../featureCart/FeatureCart';
 
 import { products } from '../data/products';
 
@@ -16,7 +17,7 @@ const App = () => {
   return (
     <div className='app'>    
       <FeatureHeader/>
-      <MainSlider/>
+      {/* <MainSlider/>
           <Container className='app_products'>
             <Row xs={2} md={4} className='app_products-row'>
                 <FeatureCards className='app_products-row_item' product={products[0]}/>
@@ -24,7 +25,8 @@ const App = () => {
                 <FeatureCards className='app_products-row_item' product={products[2]}/>
                 <FeatureCards className='app_products-row_item' product={products[3]}/>
             </Row>
-          </Container>
+          </Container> */}
+          <FeatureCart/>
       <FeatureFooter/>
     </div>
   )
