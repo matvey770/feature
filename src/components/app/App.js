@@ -1,34 +1,56 @@
-import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+
+import {React, useState} from 'react';
 import FeatureHeader from '../featureHeader/FeatureHeader';
-import MainSlider from '../mainSlider/MainSlider';
-import FeatureCards from '../featureCards/FeatureCards';
 import FeatureFooter from '../featureFooter/FeatureFooter';
 import FeatureCart from '../featureCart/FeatureCart';
-
-import { products } from '../data/products';
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import FeatureMainPage from '../pages/FeatureMainPage';
 
 import './App.scss'
 
 const App = () => {
+  const [cart, setCart] = useState([])
+  const [cartCount, setCartCount] = useState(1)
+
+  const addCartItem = (id, title, img, descr, price, size) => {
+      const newCartItem = {
+          cartId: id,
+          cartTitle: title,
+          cartImg: img,
+          cartDescr: descr,
+          cartPrice: price,
+          cartSize: size,
+          cartCount: 1
+      }
+      setCart([...cart, newCartItem])
+      console.log(cart)
+  }
+
+  const addCountItem = (id) => {
+    setCartCount(cart[id].cartCount = cart[id].cartCount + 1) 
+    console.log(cart)
+  }
+
+  const reduceCountItem = (id) => {
+    setCartCount(cart[id].cartCount = cart[id].cartCount - 1)
+    if (cart[id].cartCount < 1) {
+      setCart([...cart.slice(0, id), ...cart.slice(id + 1)])
+    } 
+    console.log(cart)
+  }
+
   return (
-    <div className='app'>    
-      <FeatureHeader/>
-      {/* <MainSlider/>
-          <Container className='app_products'>
-            <Row xs={2} md={4} className='app_products-row'>
-                <FeatureCards className='app_products-row_item' product={products[0]}/>
-                <FeatureCards className='app_products-row_item' product={products[1]}/>
-                <FeatureCards className='app_products-row_item' product={products[2]}/>
-                <FeatureCards className='app_products-row_item' product={products[3]}/>
-            </Row>
-          </Container> */}
-          <FeatureCart/>
-      <FeatureFooter/>
-    </div>
+    <Router>
+      <div className='app'>    
+        <FeatureHeader/>
+          <Routes>
+            <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
+            <Route path="/cart" element={<FeatureCart cart={cart} addCount={addCountItem} reduceCount={reduceCountItem}/>}/>
+          </Routes>
+        <FeatureFooter/>
+      </div>
+    </Router>
+
   )
 }
 

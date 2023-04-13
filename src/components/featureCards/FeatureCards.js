@@ -6,14 +6,14 @@ import { CSSTransition } from 'react-transition-group';
 
 import './featureCards.scss'
 
-const FeatureCards = ({product}) => {
+const FeatureCards = ({product, onAdd}) => {
 
     const [activeSize, setActiveSize] = useState(false)
 
     const CardsContainer = ({product}) => {
         const items = product.size.map((item) => {
             return (
-                <button key={item} className='cards_container-sizebutton'>{item}</button>
+                <button onClick={() => {onAdd(product.id, product.title, product.img, product.descr, product.price, item)}} key={item} className='cards_container-sizebutton'>{item}</button>
             )
         })
 

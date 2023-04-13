@@ -3,6 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+import {Link, NavLink} from 'react-router-dom';
+
 import './featureHeader.scss'
 import logo from "../../img/feature.jpg"
 
@@ -18,7 +20,11 @@ const FeatureHeader = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Главная</Nav.Link>
+            <NavLink
+              className={'link'}
+              end
+              to="/">
+            Главная</NavLink>
             <Nav.Link href="#action2">Новинки</Nav.Link>
             <NavDropdown title="Коллекция" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Футболки</NavDropdown.Item>
@@ -26,9 +32,11 @@ const FeatureHeader = () => {
                 Худи
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#">
-              Корзина
-            </Nav.Link>
+            <NavLink
+              className={'link'}
+              end
+              to="/cart">
+            Корзина</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
