@@ -1,5 +1,6 @@
 .appheader {
     &_logo {
+        padding-bottom: 10px;
         width: 150px;
     }
 }
@@ -8,4 +9,28 @@
     color: rgba(0, 0, 0, 0.9);
     font-size: 16px;
     text-decoration: none;
+    &_cart {
+        margin-top: 8px;
+        color: rgba(0, 0, 0, 0.9);
+        font-size: 16px;
+        text-decoration: none;
+    }
+    &_wrapper {
+        display: flex;
+    }
+    &_counter {
+        visibility: hidden;
+        font-size: 12px;
+        padding-left: 6px;
+        // padding-bottom: 20px;
+        margin-left: 6px;
+        width: 18px;
+        height: 18px;
+        color: white;
+        background-color: dimgray;
+        border-radius: 100%;
+        .active {
+            visibility: visible;
+        }
+    }
 }

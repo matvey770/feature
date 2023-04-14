@@ -8,11 +8,21 @@ import {Link, NavLink} from 'react-router-dom';
 import './featureHeader.scss'
 import logo from "../../img/feature.jpg"
 
-const FeatureHeader = () => {
+const FeatureHeader = ({count}) => {
+
+  let countVar = 'hidden'
+  if (count.length > 0) {
+    countVar = 'visible'
+  }
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <img src={logo} alt="logo" className='appheader_logo'/>
+      <NavLink
+              className={'link'}
+              end
+              to="/">
+            <img src={logo} alt="logo" className='appheader_logo'/></NavLink>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,11 +30,6 @@ const FeatureHeader = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <NavLink
-              className={'link'}
-              end
-              to="/">
-            Главная</NavLink>
             <Nav.Link href="#action2">Новинки</Nav.Link>
             <NavDropdown title="Коллекция" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Футболки</NavDropdown.Item>
@@ -33,10 +38,13 @@ const FeatureHeader = () => {
               </NavDropdown.Item>
             </NavDropdown>
             <NavLink
-              className={'link'}
+              className={'link_cart'}
               end
               to="/cart">
-            Корзина</NavLink>
+              <div className='link_wrapper'>Корзина 
+                <div className='link_counter' style={{'visibility' : countVar}}>{count.length}</div>
+              </div>
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
