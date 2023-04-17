@@ -13,6 +13,7 @@ const App = () => {
   const [cartCount, setCartCount] = useState(1)
 
   useEffect(() => {
+    setCart([])
     setCart(JSON.parse(localStorage.getItem('cart')))
     console.log('effect')
   }, [])
@@ -30,12 +31,17 @@ const App = () => {
 
       let checkOverlap = false // проверка на наличие в корзине такого же элемента
 
-      cart.map((item, i) => {
-        if (item.cartId === newCartItem.cartId && item.cartSize === newCartItem.cartSize) {
-          setCartCount(cart[i].cartCount = cart[i].cartCount + 1)
-          checkOverlap = true
-        }
-      })
+      if (cart.length === 0) {  // добавление первого элемента в корзину и в локальное хранилище
+        if (!checkOverlap) { setCart([...cart, newCartItem]) }
+        localStorage.setItem('cart', JSON.stringify([...cart, newCartItem]))
+      } else {
+        cart.map((item, i) => {
+          if (item.cartId === newCartItem.cartId && item.cartSize === newCartItem.cartSize) {
+            setCartCount(cart[i].cartCount = cart[i].cartCount + 1)
+            checkOverlap = true
+          }
+        })
+      }
 
       if (!checkOverlap) { setCart([...cart, newCartItem]) }
       localStorage.setItem('cart', JSON.stringify([...cart, newCartItem]))
