@@ -11,8 +11,10 @@ import logo from "../../img/feature.jpg"
 const FeatureHeader = ({count}) => {
 
   let countVar = 'hidden'
-  if (count.length > 0) {
-    countVar = 'visible'
+  if (count) {
+    if (count.length > 0) {
+      countVar = 'visible'
+    }
   }
 
   return (
