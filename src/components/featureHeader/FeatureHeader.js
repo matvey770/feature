@@ -8,12 +8,14 @@ import {Link, NavLink} from 'react-router-dom';
 import './featureHeader.scss'
 import logo from "../../img/feature.jpg"
 
-const FeatureHeader = ({count}) => {
+const FeatureHeader = ({cart}) => {
 
   let countVar = 'hidden'
-  if (count) {
-    if (count.length > 0) {
+  if (cart) {
+    if (cart.length > 0) {
       countVar = 'visible'
+    } else {
+      countVar = 'hidden'
     }
   }
 
@@ -44,7 +46,7 @@ const FeatureHeader = ({count}) => {
               end
               to="/cart">
               <div className='link_wrapper'>Корзина 
-                <div className='link_counter' style={{'visibility' : countVar}}>{count.length}</div>
+                <div className='link_counter' style={{'visibility' : countVar}}>{cart.length}</div>
               </div>
             </NavLink>
           </Nav>

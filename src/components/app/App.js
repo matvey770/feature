@@ -62,7 +62,7 @@ const App = () => {
   return (
     <Router>
       <div className='app'>    
-        <FeatureHeader count={cart}/>
+        <FeatureHeader cart={cart}/>
           <Routes>
             <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
             <Route path="/cart" element={<FeatureCart cart={cart} addCount={addCountItem} reduceCount={reduceCountItem}/>}/>
