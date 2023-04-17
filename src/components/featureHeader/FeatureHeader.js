@@ -10,12 +10,15 @@ import logo from "../../img/feature.jpg"
 
 const FeatureHeader = ({cart}) => {
 
+  let count
   let countVar = 'hidden'
   if (cart) {
     if (cart.length > 0) {
+      count = cart.length
       countVar = 'visible'
     } else {
       countVar = 'hidden'
+      count = null
     }
   }
 
@@ -46,7 +49,7 @@ const FeatureHeader = ({cart}) => {
               end
               to="/cart">
               <div className='link_wrapper'>Корзина 
-                <div className='link_counter' style={{'visibility' : countVar}}>{cart.length}</div>
+                <div className='link_counter' style={{'visibility' : countVar}}>{count}</div>
               </div>
             </NavLink>
           </Nav>
