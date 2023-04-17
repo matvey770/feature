@@ -13,7 +13,10 @@ const App = () => {
   const [cartCount, setCartCount] = useState(1)
 
   useEffect(() => {
-    setCart([])
+    const firstItemCart = JSON.parse(localStorage.getItem('cart'))
+    if (!firstItemCart) {
+      localStorage.setItem('cart', JSON.stringify([]))
+    }
     setCart(JSON.parse(localStorage.getItem('cart')))
     console.log('effect')
   }, [])
@@ -31,17 +34,12 @@ const App = () => {
 
       let checkOverlap = false // проверка на наличие в корзине такого же элемента
 
-      if (cart.length === 0) {  // добавление первого элемента в корзину и в локальное хранилище
-        if (!checkOverlap) { setCart([...cart, newCartItem]) }
-        localStorage.setItem('cart', JSON.stringify([...cart, newCartItem]))
-      } else {
-        cart.map((item, i) => {
-          if (item.cartId === newCartItem.cartId && item.cartSize === newCartItem.cartSize) {
-            setCartCount(cart[i].cartCount = cart[i].cartCount + 1)
-            checkOverlap = true
-          }
-        })
-      }
+      cart.map((item, i) => {
+        if (item.cartId === newCartItem.cartId && item.cartSize === newCartItem.cartSize) {
+          setCartCount(cart[i].cartCount = cart[i].cartCount + 1)
+          checkOverlap = true
+        }
+      })
 
       if (!checkOverlap) { setCart([...cart, newCartItem]) }
       localStorage.setItem('cart', JSON.stringify([...cart, newCartItem]))
@@ -65,13 +63,25 @@ const App = () => {
     console.log(cart)
   }
 
+  const clearCart = () => {
+    setCart([])
+    localStorage.setItem('cart', JSON.stringify([]))
+  }
+
   return (
     <Router>
       <div className='app'>    
         <FeatureHeader cart={cart}/>
           <Routes>
             <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
-            <Route path="/cart" element={<FeatureCart cart={cart} addCount={addCountItem} reduceCount={reduceCountItem}/>}/>
+            <Route path="/cart" 
+                   element={<FeatureCart 
+                              cart={cart} 
+                              addCount={addCountItem} 
+                              reduceCount={reduceCountItem} 
+                              clearCart={clearCart}
+                            />}
+            />
           </Routes>
         <FeatureFooter/>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useState} from 'react'
 import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
 import * as Yup from 'yup'
 
@@ -19,7 +19,8 @@ const TextInput = ({label, ...props}) => {
     )
 }
 
-const FeatureForm = ({cart}) => {
+const FeatureForm = ({cart, clearCart}) => {
+    const [emptyCartError, setEmptyCartError] = useState(false)
     return (
         <Formik
         initialValues = {{
@@ -49,10 +50,18 @@ const FeatureForm = ({cart}) => {
             const order = {
                 orderId: 1,
                 buyerData: values,
-                orderData: cart
+                orderData: cart,
+                promo: false, // вставить из промокода
+                totalCost: 10000 // вставить из корзины
             }
-            console.log(JSON.stringify(order, null, 2))
-            // console.log(JSON.stringify(cart, null, 2))
+            if (order.orderData.length < 1) {
+                setEmptyCartError(true)
+                console.log(emptyCartError)
+            } else {
+                console.log(emptyCartError)
+                clearCart()                                     // переход на оплату
+                console.log(JSON.stringify(order, null, 2))
+            }
         }}
         >
             <Form className='cart__purchase_form'>
@@ -90,6 +99,7 @@ const FeatureForm = ({cart}) => {
                 </label>
                 <ErrorMessage className="error" name="terms" component="div"/>
                 <button type="submit" className='cart__purchase_form-button'>Оплатить</button>
+                {emptyCartError ? <div className="error">Корзина пуста!</div> : null}
             </Form>
         </Formik>
     )

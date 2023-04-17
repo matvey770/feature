@@ -8,7 +8,7 @@ import credit from "../../img/icons/creditcard.png"
 import courier from "../../img/icons/courier.png"
 import launch from "../../img/icons/launch.png"
 
-const FeatureCart = ({cart, addCount, reduceCount}) => {
+const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
 
     const EmptyCart = () => {
         return (
@@ -92,7 +92,7 @@ const FeatureCart = ({cart, addCount, reduceCount}) => {
                 <h2 className='cart_label'>Оформление заказа(зарегистрируйтесь или войдите)</h2>
                 <div className='cart_line'></div>
                 <div className='cart__purchase'>
-                    <FeatureForm cart={cart}/>
+                    <FeatureForm cart={cart} clearCart={clearCart}/>
                     <div className='cart__descr'>
                         <div className='cart__descr_wrapper'>
                             <img className='cart__descr-img' src={credit} alt="credit"></img>
