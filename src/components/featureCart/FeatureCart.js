@@ -1,11 +1,12 @@
 import {React} from 'react'
 
+import FeatureForm from '../featureForm/FeatureForm';
+
 import './featureCart.scss'
 
 import credit from "../../img/icons/creditcard.png"
 import courier from "../../img/icons/courier.png"
 import launch from "../../img/icons/launch.png"
-
 
 const FeatureCart = ({cart, addCount, reduceCount}) => {
 
@@ -41,30 +42,6 @@ const FeatureCart = ({cart, addCount, reduceCount}) => {
             )
     }
 
-    const CartForm = () => {
-        return (
-            <form className='cart__purchase_form'>
-                <label>
-                    <div className='cart__purchase_form-name'>Имя:</div>
-                    <input className='cart__purchase_form-input' type="text" name="name" />
-                </label>
-                <label>
-                    <div className='cart__purchase_form-name'>Телефон:</div>
-                    <input className='cart__purchase_form-input' type="text" name="name" />
-                </label>
-                <label>
-                    <div className='cart__purchase_form-name'>E-mail:</div>
-                    <input className='cart__purchase_form-input' type="text" name="name" />
-                </label>
-                <label>
-                    <div className='cart__purchase_form-checkname'>Даю согласие на обработку персональных данных и соглашаюсь с условиями политики</div>
-                    <input className='cart__purchase_form-check' type="checkbox"/>
-                </label>
-                <button className='cart__purchase_form-button'>Оплатить</button>
-            </form>
-        )
-    }
-
     const CartCostPrice = () => {
         let totalPrice = 0;
         cart.map(item => {
@@ -85,8 +62,8 @@ const FeatureCart = ({cart, addCount, reduceCount}) => {
                 <div className='cart__cost_price'>
                     <div className='cart__cost_price-item'>Скидка:</div>
                     <div className='cart__cost_price-item'>К оплате:</div>
-                    <div className='cart__cost_price-discount'>0 р</div>
-                    <div className='cart__cost_price-value'>{totalPrice} р</div>
+                    <div className='cart__cost_price-discount'>0 р.</div>
+                    <div className='cart__cost_price-value'>{totalPrice} р.</div>
                 </div>
             </div>
         )
@@ -115,7 +92,7 @@ const FeatureCart = ({cart, addCount, reduceCount}) => {
                 <h2 className='cart_label'>Оформление заказа(зарегистрируйтесь или войдите)</h2>
                 <div className='cart_line'></div>
                 <div className='cart__purchase'>
-                    <CartForm/>
+                    <FeatureForm cart={cart}/>
                     <div className='cart__descr'>
                         <div className='cart__descr_wrapper'>
                             <img className='cart__descr-img' src={credit} alt="credit"></img>
