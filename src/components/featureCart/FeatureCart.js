@@ -1,4 +1,4 @@
-import {React} from 'react'
+import {React, useEffect} from 'react'
 
 import FeatureForm from '../featureForm/FeatureForm';
 
@@ -9,6 +9,10 @@ import courier from "../../img/icons/courier.png"
 import launch from "../../img/icons/launch.png"
 
 const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
+
+    useEffect(() => {
+        console.log('cartEffect')
+    }, [])
 
     const EmptyCart = () => {
         return (
@@ -28,10 +32,10 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
                         <div className='cart__item-size'>{item.cartSize}</div>
                         <div className='cart__item_quantity'>
                             <button onClick={() => {reduceCount(i)}} className='cart__item_quantity-reduce'>-</button>
-                            <div className='cart__item_quantity-counter'>{item.cartCount}</div>
+                            <div className='cart__item_quantity-counter'>{item.cartCounter}</div>
                             <button onClick={() => {addCount(i)}} className='cart__item_quantity-add'>+</button>
                         </div>
-                        <div className='cart__item-price'>{item.cartPrice * item.cartCount} р.</div>
+                        <div className='cart__item-price'>{item.cartPrice * item.cartCounter} р.</div>
                     </div>
                 )
             })
@@ -45,7 +49,7 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
     const CartCostPrice = () => {
         let totalPrice = 0;
         cart.map(item => {
-            totalPrice = totalPrice + item.cartCount * item.cartPrice
+            totalPrice = totalPrice + item.cartCounter * item.cartPrice
         })
 
         return (

@@ -5,6 +5,7 @@ import FeatureHeader from '../featureHeader/FeatureHeader';
 import FeatureFooter from '../featureFooter/FeatureFooter';
 import FeatureCart from '../featureCart/FeatureCart';
 import FeatureMainPage from '../pages/FeatureMainPage';
+import SingleItemLayout from '../singleItemLayout/SingleItemLayout';
 
 import './App.scss'
 
@@ -29,14 +30,14 @@ const App = () => {
           cartDescr: descr,
           cartPrice: price,
           cartSize: size,
-          cartCount: 1
+          cartCounter: 1
       }
 
       let checkOverlap = false // проверка на наличие в корзине такого же элемента
 
       cart.map((item, i) => {
         if (item.cartId === newCartItem.cartId && item.cartSize === newCartItem.cartSize) {
-          setCartCount(cart[i].cartCount = cart[i].cartCount + 1)
+          setCartCount(cart[i].cartCounter = cart[i].cartCounter + 1)
           checkOverlap = true
         }
       })
@@ -48,15 +49,15 @@ const App = () => {
   }
 
   const addCountItem = (id) => {  // прибавка счетчика
-    setCartCount(cart[id].cartCount = cart[id].cartCount + 1) 
+    setCartCount(cart[id].cartCounter = cart[id].cartCounter + 1) 
     console.log(cart)
     localStorage.setItem('cart', JSON.stringify(cart))
   }
 
   const reduceCountItem = (id) => { // убавление счетчика/удаление из корзины
-    setCartCount(cart[id].cartCount = cart[id].cartCount - 1)
+    setCartCount(cart[id].cartCounter = cart[id].cartCounter - 1)
     localStorage.setItem('cart', JSON.stringify(cart))
-    if (cart[id].cartCount < 1) {
+    if (cart[id].cartCounter < 1) {
       setCart([...cart.slice(0, id), ...cart.slice(id + 1)])
       localStorage.setItem('cart', JSON.stringify([...cart.slice(0, id), ...cart.slice(id + 1)]))
     } 
@@ -72,8 +73,9 @@ const App = () => {
     <Router>
       <div className='app'>    
         <FeatureHeader cart={cart}/>
+        <SingleItemLayout/>
           <Routes>
-            <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
+            {/* <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/> */}
             <Route path="/cart" 
                    element={<FeatureCart 
                               cart={cart} 

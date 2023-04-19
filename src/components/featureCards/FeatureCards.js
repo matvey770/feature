@@ -13,7 +13,11 @@ const FeatureCards = ({product, onAdd}) => {
     const CardsContainer = ({product}) => {
         const items = product.size.map((item) => {
             return (
-                <button onClick={() => {onAdd(product.id, product.title, product.img, product.descr, product.price, item)}} key={item} className='cards_container-sizebutton'>{item}</button>
+                <button onClick={() => {onAdd(product.id, product.title, product.img, product.descr, product.price, item)}} 
+                        key={item} 
+                        className='cards_container-sizebutton'>
+                            {item}
+                </button>
             )
         })
 
@@ -22,6 +26,11 @@ const FeatureCards = ({product, onAdd}) => {
                 {items}
             </div>
         )
+    }
+
+    const onActiveSize = () => {
+        setActiveSize(!activeSize)
+        console.log(activeSize)
     }
 
     return (
@@ -34,7 +43,7 @@ const FeatureCards = ({product, onAdd}) => {
                     </Card.Text>
                 <div className='cards_footer'>
                     <Button onClick={() => {
-                                setActiveSize(!activeSize)}}
+                                onActiveSize()}}
                             className='cards_footer-button' 
                             variant='dark'>В корзину
                     </Button>

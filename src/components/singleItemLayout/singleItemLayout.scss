@@ -1,0 +1,116 @@
+.singleitem {
+    max-width: 1296px;
+    margin: 0 auto;
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    &_container {
+        display: grid;
+        width: 820px;
+        grid-template-columns: 400px 400px;
+        grid-template-rows: 400px 400px;
+        row-gap: 20px;
+        column-gap: 20px;
+        &-img {
+            width: 400px;
+            height: 400px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+        }
+        &-img:hover {
+            transition: all 280ms;
+            box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.4);
+        }
+    }
+    &__descr {
+        width: 436px;
+    }
+    &_label {
+        display: block;
+        &-feature {
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 21px;
+        }
+        &-feature::after {
+            position: absolute;
+            transform: translateY(-8px) translateX(2px);
+            font-size: 16px;
+            content: "тм";
+        }
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        &-name {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 21px;
+        }
+        &-price {
+            // font-weight: 700;
+            font-size: 22px;
+            line-height: 21px;
+        }
+    }
+    &_sizes {
+        margin-top: 40px;
+        &-title {
+            font-size: 16px;
+        }
+        &-sizebutton {
+            margin-top: 10px;
+            margin-left: 1px;
+            color: black;
+            background-color: gainsboro;
+            border-radius: 6px;
+            border-color: white;
+            border: 0;
+            width: 24%;
+            height: 40px;
+        }
+    }
+    &-add {
+        padding-bottom: 4px;
+        margin-top: 25px;
+        width: 75%;
+        height: 50px;
+        background: #1B1F23;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 7px;
+        font-size: 18px;
+        line-height: 21px;
+        color: #FFFFFF;
+        border: 0;
+    }
+    &_tabs {
+        margin-top: 20px;
+        &-button {
+            margin-top: 10px;
+            margin-left: 1px;
+            color: black;
+            background-color: gainsboro;
+            border: 0;
+            width: 24%;
+            height: 40px;
+        }
+    }
+    &_content {
+        width: 100%;
+        &-item {
+            margin-top: 16px;
+            display: none;
+            font-size: 14px;
+        }
+    }
+}
+
+.is-active {
+    background-color: #1B1F23;
+    color: #FFFFFF;
+}
+
+.is-activecontent {
+     display: block;
+}
