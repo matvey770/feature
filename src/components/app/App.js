@@ -73,9 +73,9 @@ const App = () => {
     <Router>
       <div className='app'>    
         <FeatureHeader cart={cart}/>
-        <SingleItemLayout/>
           <Routes>
-            {/* <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/> */}
+            <Route path="products/:id" element={<SingleItemLayout/>}/>
+            <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
             <Route path="/cart" 
                    element={<FeatureCart 
                               cart={cart} 

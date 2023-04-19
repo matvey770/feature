@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+import { Link } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -35,7 +36,9 @@ const FeatureCards = ({product, onAdd}) => {
 
     return (
         <Card key={product.id} className='cards'>
-            <Card.Img variant="top" src={product.img} className="cards_img"/>
+            <Link to={`products/${product.id}`}>
+                <Card.Img variant="top" src={product.img} className="cards_img"/>
+            </Link>
             <Card.Body>
                 <Card.Title className='text'>{product.title}</Card.Title>
                     <Card.Text>
