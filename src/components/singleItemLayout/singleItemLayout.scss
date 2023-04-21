@@ -55,20 +55,22 @@
         }
     }
     &_sizes {
-        margin-top: 40px;
+        margin-top: 50px;
         &-title {
             font-size: 16px;
         }
         &-sizebutton {
-            margin-top: 10px;
             margin-left: 1px;
-            color: black;
-            background-color: gainsboro;
+            color: rgb(182, 182, 182);
+            background-color: white;
             border-radius: 6px;
-            border-color: white;
-            border: 0;
-            width: 24%;
+            border: 1px solid;
+            width: 24.7%;
             height: 40px;
+        }
+        &-sizebutton:hover {
+            transition: all 350ms;
+            background-color: rgb(168, 168, 168);
         }
     }
     &-add {
@@ -84,16 +86,27 @@
         color: #FFFFFF;
         border: 0;
     }
+    &-add:hover {
+        transition: all 350ms;
+        background: #393d42;;
+    }
     &_tabs {
-        margin-top: 20px;
-        &-button {
+        margin-top: 25px;
+        &_container {
             margin-top: 10px;
+        }
+        &-button {
             margin-left: 1px;
             color: black;
             background-color: gainsboro;
             border: 0;
-            width: 24%;
+            width: 24.7%;
             height: 40px;
+        }
+        &-button:hover {
+            // color: rgb(255, 255, 255);
+            transition: all 350ms;
+            background-color: rgb(202, 202, 202);
         }
     }
     &_content {
@@ -107,10 +120,33 @@
 }
 
 .is-active {
+    color: rgb(255, 255, 255);
     background-color: #1B1F23;
-    color: #FFFFFF;
+}
+
+.is-active:hover {
+    color: rgb(255, 255, 255);
+    background-color: #1B1F23;
 }
 
 .is-activecontent {
      display: block;
+}
+
+.is-activesize {
+    color: black;
+    background-color: gainsboro;
+    border: 0;
+}
+
+.is-choosedsize {
+    transition: all 350ms;
+    color: rgb(255, 255, 255);
+    background-color: #1B1F23;
+    // border: 0;
+}
+
+.is-choosedsize:hover {
+    color: rgb(255, 255, 255);
+    background-color: #1B1F23;
 }

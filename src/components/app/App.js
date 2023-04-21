@@ -32,6 +32,8 @@ const App = () => {
           cartSize: size,
           cartCounter: 1
       }
+      
+      if (size === "") return
 
       let checkOverlap = false // проверка на наличие в корзине такого же элемента
 
@@ -74,7 +76,7 @@ const App = () => {
       <div className='app'>    
         <FeatureHeader cart={cart}/>
           <Routes>
-            <Route path="products/:id" element={<SingleItemLayout/>}/>
+            <Route path="products/:id" element={<SingleItemLayout onAdd={addCartItem} cart={cart}/>}/>
             <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
             <Route path="/cart" 
                    element={<FeatureCart 

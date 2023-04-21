@@ -4,12 +4,13 @@ import {useParams} from 'react-router-dom';
 import './singleItemLayout.scss'
 
 import merch from '../../img/merch/merch_item_1.png'
+import Spinner from '../spinner/Spinner';
 
-const SingleItemLayout = () => {
+const SingleItemLayout = ({onAdd, cart}) => {
 
     const {id} = useParams(); //получение id через router hook для получения отдельного item 
     const [dataSingleItem, setDataSingleItem] = useState([])
-    const [status, setStatus] = useState('idle');
+    const [status, setStatus] = useState('idle')
 
     useEffect(() => {
         const fetchData = async () => { //СДЕЛАТЬ ЧЕРЕЗ HTTP.HOOK
@@ -35,7 +36,7 @@ const SingleItemLayout = () => {
 
         const Button = ({id, tabClass, tabContent}) => {
             return (
-                <button id={id} className={`singleitem_tabs-button ${tabClass ? "is-active " : ""}`}>{tabContent}</button>
+                <button id={id} className={`singleitem_tabs-button ${tabClass ? "is-active" : ""}`}>{tabContent}</button>
             )
         }
 
@@ -89,36 +90,91 @@ const SingleItemLayout = () => {
             </div>
         )
     }
-    
-    return (
-        <div className="singleitem">
-            <div className="singleitem__wrapper">
-                <div className="singleitem_container">
-                    <img className="singleitem_container-img" src={img} alt='img 1'></img>
-                    <img className="singleitem_container-img" src={merch} alt='img 2'></img>
-                    <img className="singleitem_container-img" src={merch} alt='img 3'></img>
-                    <img className="singleitem_container-img" src={merch} alt='img 4'></img>
+
+    const SizeRow = () => {
+        const sizesClass = []
+        const sizes = ["S", "M", "L", "XL"]
+
+        const [activeChoose, setActiveChoose] = useState([false, false, false, false]);
+        const [sizeItem, setSizeItem] = useState('')
+        const [addedItem, setAddedItem] = useState(false)
+
+        const intersect = () => {
+            for (let i = 0; i < sizes.length; i++) {
+                sizesClass[i] = size.includes(sizes[i])
+            }
+        }
+        
+        const idClick = (event) => {
+            const id = event.target.id
+            let choose = activeChoose.map(item => {
+                item = false
+            })
+            choose[id] = true
+            setActiveChoose(choose)
+        }
+
+        const onClickSizeButton = (event) => {
+                setSizeItem(event.currentTarget.textContent)
+        }
+
+        const addedItemFunc = () => {
+                setAddedItem(true)
+                onAdd(Number(id), title, img, descr, price, sizeItem)
+        }
+
+        const AddedToCart = () => {
+            return (
+                <div>Товар добавлен в корзину</div>
+            )
+        }
+
+        if (status === "fetched") {
+            intersect()}
+        return (
+            <>
+                <div className="singleitem_sizes" onClick={idClick}>
+                    {sizes.map((item, i) => {
+                        return (
+                            <button disabled={!sizesClass[i]} id={i} key={item} onClick={onClickSizeButton} className={`singleitem_sizes-sizebutton ${sizesClass[i] ? 'is-activesize' : ''} ${activeChoose[i] ? 'is-choosedsize' : ''}`}>{item}</button>
+                        )
+                    })}
                 </div>
-                <div className="singleitem__descr">
-                    <div className="singleitem_label">
-                        <div className="singleitem_label-feature">FEATURE</div>
-                        <div className="singleitem_label-wrapper">
-                            <div className="singleitem_label-name">{title}</div>
-                            <div className="singleitem_label-price">{price} p</div>
+                <button disabled={!sizeItem} onClick={() => {addedItemFunc()}} className="singleitem-add">Добавить в корзину</button>
+                {addedItem ? <AddedToCart/> : null}
+            </>
+        )
+    }
+    
+    if (status === 'fetched') {
+        return (
+            <div className="singleitem">
+                <div className="singleitem__wrapper">
+                    <div className="singleitem_container">
+                        <img className="singleitem_container-img" src={img} alt='img 1'></img>
+                        <img className="singleitem_container-img" src={merch} alt='img 2'></img>
+                        <img className="singleitem_container-img" src={merch} alt='img 3'></img>
+                        <img className="singleitem_container-img" src={merch} alt='img 4'></img>
+                    </div>
+                    <div className="singleitem__descr">
+                        <div className="singleitem_label">
+                            <div className="singleitem_label-feature">FEATURE</div>
+                            <div className="singleitem_label-wrapper">
+                                <div className="singleitem_label-name">{title}</div>
+                                <div className="singleitem_label-price">{price} p</div>
+                            </div>
                         </div>
+                        <SizeRow/>
+                        <TabsContent/>
                     </div>
-                    <div className="singleitem_sizes">
-                        <button className="singleitem_sizes-sizebutton">S</button>
-                        <button className="singleitem_sizes-sizebutton">M</button>
-                        <button className="singleitem_sizes-sizebutton">L</button>
-                        <button className="singleitem_sizes-sizebutton">XL</button>
-                    </div>
-                    <button className="singleitem-add">Добавить в корзину</button>
-                    <TabsContent/>
                 </div>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <Spinner/>
+        )
+    }
 }
 
 export default SingleItemLayout
