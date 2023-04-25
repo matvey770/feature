@@ -1,0 +1,8 @@
+.animate {
+    animation: 1s show ease;
+}
+
+@keyframes show {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}

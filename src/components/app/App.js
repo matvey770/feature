@@ -4,16 +4,18 @@ import {React, useState, useEffect} from 'react';
 import FeatureHeader from '../featureHeader/FeatureHeader';
 import FeatureFooter from '../featureFooter/FeatureFooter';
 import FeatureCart from '../featureCart/FeatureCart';
-import FeatureMainPage from '../pages/FeatureMainPage';
-import SingleItemLayout from '../singleItemLayout/SingleItemLayout';
+import FeatureMainPage from '../pages/featureMainPage/FeatureMainPage';
+import SingleItemLayout from '../pages/singleItemLayout/SingleItemLayout';
+import CategoryPage from '../pages/categoryPage/CategoryPage';
 
 import './App.scss'
 
 const App = () => {
   const [cart, setCart] = useState([])
-  const [cartCount, setCartCount] = useState(1)
+  const [cartCount, setCartCount] = useState(1) //количество продукта
+  const [addedItem, setAddedItem] = useState(false) //добавлен ли товар в корзину (для кнопки в singleItemLayout)
 
-  useEffect(() => {
+  useEffect(() => { //получение базы продуктов
     const firstItemCart = JSON.parse(localStorage.getItem('cart'))
     if (!firstItemCart) {
       localStorage.setItem('cart', JSON.stringify([]))
@@ -22,32 +24,43 @@ const App = () => {
     console.log('effect')
   }, [])
 
+  useEffect(() => { //таймер "товар добавлен в корзину"
+    if (addedItem) {
+      setTimeout(() => {
+        setAddedItem(false)
+        console.log(addedItem)
+      }, 3000)
+    }
+  }, [addedItem])
+
   const addCartItem = (id, title, img, descr, price, size) => {  // добавление элемента в корзину
-      const newCartItem = {
-          cartId: id,
-          cartTitle: title,
-          cartImg: img,
-          cartDescr: descr,
-          cartPrice: price,
-          cartSize: size,
-          cartCounter: 1
-      }
+    setAddedItem(true)
+
+    const newCartItem = {
+        cartId: id,
+        cartTitle: title,
+        cartImg: img,
+        cartDescr: descr,
+        cartPrice: price,
+        cartSize: size,
+        cartCounter: 1
+    }
       
-      if (size === "") return
+    if (size === "") return
 
-      let checkOverlap = false // проверка на наличие в корзине такого же элемента
+    let checkOverlap = false // проверка на наличие в корзине такого же элемента
 
-      cart.map((item, i) => {
-        if (item.cartId === newCartItem.cartId && item.cartSize === newCartItem.cartSize) {
-          setCartCount(cart[i].cartCounter = cart[i].cartCounter + 1)
-          checkOverlap = true
-        }
-      })
+    cart.map((item, i) => {
+      if (item.cartId === newCartItem.cartId && item.cartSize === newCartItem.cartSize) {
+        setCartCount(cart[i].cartCounter = cart[i].cartCounter + 1)
+        checkOverlap = true
+      }
+    })
 
-      if (!checkOverlap) { setCart([...cart, newCartItem]) }
-      localStorage.setItem('cart', JSON.stringify([...cart, newCartItem]))
-  
-      console.log(cart)
+    if (!checkOverlap) { setCart([...cart, newCartItem]) }
+    localStorage.setItem('cart', JSON.stringify([...cart, newCartItem]))
+
+    console.log(cart)
   }
 
   const addCountItem = (id) => {  // прибавка счетчика
@@ -76,7 +89,10 @@ const App = () => {
       <div className='app'>    
         <FeatureHeader cart={cart}/>
           <Routes>
-            <Route path="products/:id" element={<SingleItemLayout onAdd={addCartItem} cart={cart}/>}/>
+            <Route path="/new" element={<CategoryPage onAdd={addCartItem} dataType='new'/>}/>
+            <Route path="/t-shirts" element={<CategoryPage onAdd={addCartItem} dataType='t-shirt'/>}/>
+            <Route path="/hoodies" element={<CategoryPage onAdd={addCartItem} dataType='hoodie'/>}/>
+            <Route path="/products/:id" element={<SingleItemLayout onAdd={addCartItem} cart={cart} addedItem={addedItem}/>}/>
             <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
             <Route path="/cart" 
                    element={<FeatureCart 

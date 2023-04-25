@@ -1,0 +1,16 @@
+.category {
+    &_wrapper {
+        animation: 1s show ease;
+        max-width: 1296px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: start;
+    }
+    &_item {
+       padding-left: 20px;
+    }
+}
+@keyframes show {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}

@@ -6,7 +6,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import {Link, NavLink} from 'react-router-dom';
 
 import './featureHeader.scss'
-import logo from "../../img/feature.jpg"
 
 const FeatureHeader = ({cart}) => {
 
@@ -29,7 +28,8 @@ const FeatureHeader = ({cart}) => {
               className={'link'}
               end
               to="/">
-            <img src={logo} alt="logo" className='appheader_logo'/></NavLink>
+            <div className='appheader_logo'>FEATURE</div>
+            </NavLink>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -37,11 +37,28 @@ const FeatureHeader = ({cart}) => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action2">Новинки</Nav.Link>
+            <NavLink
+              className={'link'}
+              end
+              to="/new">
+                Новинки
+              </NavLink>
             <NavDropdown title="Коллекция" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Футболки</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Худи
+              <NavDropdown.Item>
+                <NavLink
+                  className={'link'}
+                  end
+                  to="/t-shirts">
+                  Новинки
+                </NavLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <NavLink
+                    className={'link'}
+                    end
+                    to="/hoodies">
+                    Худи
+                </NavLink>
               </NavDropdown.Item>
             </NavDropdown>
             <NavLink

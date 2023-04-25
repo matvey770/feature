@@ -3,10 +3,10 @@ import {useParams} from 'react-router-dom';
 
 import './singleItemLayout.scss'
 
-import merch from '../../img/merch/merch_item_1.png'
-import Spinner from '../spinner/Spinner';
+import merch from '../../../img/merch/merch_item_1.png'
+import Spinner from '../../spinner/Spinner';
 
-const SingleItemLayout = ({onAdd, cart}) => {
+const SingleItemLayout = ({onAdd, cart, addedItem}) => {
 
     const {id} = useParams(); //получение id через router hook для получения отдельного item 
     const [dataSingleItem, setDataSingleItem] = useState([])
@@ -15,7 +15,7 @@ const SingleItemLayout = ({onAdd, cart}) => {
     useEffect(() => {
         const fetchData = async () => { //СДЕЛАТЬ ЧЕРЕЗ HTTP.HOOK
             setStatus('fetching');
-            const response = await fetch(`http://localhost:3001/products`);
+            const response = await fetch(`https://6447fe3f7bb84f5a3e4f662e.mockapi.io/products`);
             const dataSingleItem = await response.json();
             setDataSingleItem(dataSingleItem[id-1]);
             setStatus('fetched');
@@ -92,12 +92,21 @@ const SingleItemLayout = ({onAdd, cart}) => {
     }
 
     const SizeRow = () => {
+
         const sizesClass = []
         const sizes = ["S", "M", "L", "XL"]
 
         const [activeChoose, setActiveChoose] = useState([false, false, false, false]);
         const [sizeItem, setSizeItem] = useState('')
-        const [addedItem, setAddedItem] = useState(false)
+        const [chooseSize, setChooseSize] = useState(false)
+
+        useEffect(() => { //таймер "сначала выберите размер"
+            if (chooseSize) {
+              setTimeout(() => {
+                setChooseSize(false)
+              }, 3000)
+            }
+          }, [chooseSize])
 
         const intersect = () => {
             for (let i = 0; i < sizes.length; i++) {
@@ -119,29 +128,44 @@ const SingleItemLayout = ({onAdd, cart}) => {
         }
 
         const addedItemFunc = () => {
-                setAddedItem(true)
-                onAdd(Number(id), title, img, descr, price, sizeItem)
+                if (!sizeItem) {
+                    setChooseSize(true)
+                } else {
+                    onAdd(Number(id), title, img, descr, price, sizeItem)
+                }
         }
 
-        const AddedToCart = () => {
-            return (
-                <div>Товар добавлен в корзину</div>
-            )
+        if (status === "fetched") {intersect()}
+
+        let buttonContent = 'Добавить в корзину'
+        if (chooseSize) {
+            buttonContent = 'Сначала выберите размер'
+        } else if (addedItem) {
+            buttonContent = 'Товар добавлен в корзину'
         }
 
-        if (status === "fetched") {
-            intersect()}
         return (
             <>
                 <div className="singleitem_sizes" onClick={idClick}>
                     {sizes.map((item, i) => {
                         return (
-                            <button disabled={!sizesClass[i]} id={i} key={item} onClick={onClickSizeButton} className={`singleitem_sizes-sizebutton ${sizesClass[i] ? 'is-activesize' : ''} ${activeChoose[i] ? 'is-choosedsize' : ''}`}>{item}</button>
+                            <button 
+                                disabled={!sizesClass[i]} 
+                                id={i} 
+                                key={item} 
+                                onClick={onClickSizeButton} 
+                                className={`singleitem_sizes-sizebutton ${sizesClass[i] ? 'is-activesize' : ''} 
+                                ${activeChoose[i] ? 'is-choosedsize' : ''}`}>
+                                    {item}
+                            </button>
                         )
                     })}
                 </div>
-                <button disabled={!sizeItem} onClick={() => {addedItemFunc()}} className="singleitem-add">Добавить в корзину</button>
-                {addedItem ? <AddedToCart/> : null}
+                <button 
+                    onClick={() => {addedItemFunc()}} 
+                    className={`singleitem-add ${chooseSize ? 'choose' : ''} ${addedItem ? 'added' : ''}`}>
+                        {buttonContent}
+                </button>
             </>
         )
     }

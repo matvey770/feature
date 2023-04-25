@@ -9,7 +9,7 @@ const FeatureFooter = () => {
         <Container className='footer'>
         <Row>
             <Col>
-                <h2 className="footer_name">Feature</h2>
+                <h2 className="footer_name">FEATURE</h2>
                 <h3 className='footer_number'>8 (906) 066 15 55</h3>
             </Col>
             <Col>

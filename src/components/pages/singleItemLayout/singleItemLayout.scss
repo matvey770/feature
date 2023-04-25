@@ -1,4 +1,5 @@
 .singleitem {
+    animation: 1s show ease;
     max-width: 1296px;
     margin: 20px auto;
     &__wrapper {
@@ -60,6 +61,7 @@
             font-size: 16px;
         }
         &-sizebutton {
+            cursor: not-allowed;
             margin-left: 1px;
             color: rgb(182, 182, 182);
             background-color: white;
@@ -149,4 +151,26 @@
 .is-choosedsize:hover {
     color: rgb(255, 255, 255);
     background-color: #1B1F23;
+}
+
+.choose {
+    background: red;
+}
+
+.choose:hover {
+    background: red;
+}
+
+.added {
+    transition: all 300ms;
+    background: green;
+}
+.added:hover {
+    transition: all 300ms;
+    background: green;
+}
+
+@keyframes show {
+    from { opacity: 0 }
+    to { opacity: 1 }
 }

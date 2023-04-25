@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
@@ -10,11 +10,28 @@ import './featureCards.scss'
 const FeatureCards = ({product, onAdd}) => {
 
     const [activeSize, setActiveSize] = useState(false)
+    const [activeAdd, setActiveAdd] = useState(false);
+
+    useEffect(() => { //таймер "товар добавлен в корзину"
+        if (activeAdd) {
+          setTimeout(() => {
+            setActiveAdd(false)
+            console.log(activeAdd)
+          }, 3000)
+        }
+      }, [activeAdd])
 
     const CardsContainer = ({product}) => {
+
+        const addItem = (id, title, img, descr, price, item) => {
+            onAdd(id, title, img, descr, price, item)
+            onActiveSize()
+            setActiveAdd(true)
+        }
+
         const items = product.size.map((item) => {
             return (
-                <button onClick={() => {onAdd(product.id, product.title, product.img, product.descr, product.price, item)}} 
+                <button onClick={() => {addItem(product.id, product.title, product.img, product.descr, product.price, item)}} 
                         key={item} 
                         className='cards_container-sizebutton'>
                             {item}
@@ -34,9 +51,14 @@ const FeatureCards = ({product, onAdd}) => {
         console.log(activeSize)
     }
 
+    let buttonContent = 'В корзину'
+    if (activeAdd) {
+        buttonContent = <>&#10003;</>
+    }
+
     return (
         <Card key={product.id} className='cards'>
-            <Link to={`products/${product.id}`}>
+            <Link to={`/products/${product.id}`}>
                 <Card.Img variant="top" src={product.img} className="cards_img"/>
             </Link>
             <Card.Body>
@@ -47,8 +69,8 @@ const FeatureCards = ({product, onAdd}) => {
                 <div className='cards_footer'>
                     <Button onClick={() => {
                                 onActiveSize()}}
-                            className='cards_footer-button' 
-                            variant='dark'>В корзину
+                            className={`cards_footer-button ${activeAdd ? 'cardsbutton-added' : ''}`}
+                            variant='dark'>{buttonContent}
                     </Button>
                     <CSSTransition in={activeSize} timeout={300} classNames='cards_container'>
                         <CardsContainer product={product}/>
@@ -61,3 +83,5 @@ const FeatureCards = ({product, onAdd}) => {
 }
 
 export default FeatureCards;
+
+// &#10003;

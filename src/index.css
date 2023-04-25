@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Guerrilla';
+  src: local('Guerrilla'),
+    url('./fonts/GUERRILLA-Normal.otf') format('truetype');
+}
