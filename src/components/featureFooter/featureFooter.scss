@@ -28,17 +28,6 @@
 
 @media (max-width: 576px) {
     .footer {
-        &_name {
-            margin-left: 20px;
-        }
-        &_number {
-            margin-left: 20px;
-        }
-    }
-}
-
-@media (max-width: 390px) {
-    .footer {
         margin-top: 20px;
         &_name {
             margin-left: 0;
@@ -47,6 +36,11 @@
         &_number {
             margin-left: 0;
         }
+    }
+}
+
+@media (max-width: 390px) {
+    .footer {
         &_menu {
             &-item {
                 font-size: 15px;

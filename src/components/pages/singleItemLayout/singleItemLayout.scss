@@ -214,7 +214,7 @@
 @media (max-width: 992px) {
     .singleitem {
         &_container {
-            width: 410px;
+            width: 100%;
             grid-template-columns: 200px 200px;
             grid-template-rows: 200px 200px;
             row-gap: 10px;
@@ -239,6 +239,7 @@
             margin: 20px 1%;
         }
         &_container {
+            margin: 0 auto;
             width: 566px;
             height: 566px;
             grid-template-columns: 278px 278px;
@@ -272,10 +273,10 @@
             margin: 20px 2.5%;
         }
         &_container {
-            width: 370px;
-            height: 370px;
-            grid-template-columns: 180px 180px;
-            grid-template-rows: 180px 180px;
+            width: 410px;
+            height: 410px;
+            grid-template-columns: 48.5% 48.5%;
+            grid-template-rows: 48.5% 48.5%;
             row-gap: 10px;
             column-gap: 10px;
         }

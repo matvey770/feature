@@ -111,7 +111,14 @@
     .cart {
         &__purchase {
             &_form {
-                width: 576px;
+                width: 100%;
+                &-name {
+                    width: 90px;
+                }
+                &-input {
+                    width: 160px;
+                    margin-left: 0px;
+                }
             }
         }
     }
@@ -123,7 +130,7 @@
             &_form {
                 width: 390px;
                 &-input {
-                    width: 300px;
+                    width: 210px;
                     margin-left: 40px;
                 }
             }
