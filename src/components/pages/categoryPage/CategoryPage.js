@@ -2,7 +2,11 @@ import {React, useState, useEffect} from "react";
 
 import FeatureCards from '../../featureCards/FeatureCards';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+
 import './categoryPage.scss'
+
 
 const CategoryPage = ({onAdd, dataType}) => {
 
@@ -23,17 +27,19 @@ const CategoryPage = ({onAdd, dataType}) => {
 
     const items = data.filter(item => item.category === dataType).map((item, i) => {
         return (
-            <div className="category_item">
+            <>
                 <FeatureCards onAdd={onAdd} product={item}/>
-            </div>
+            </>
         )
     })
 
     if (status === 'fetched') {
         return (
-            <div className="category_wrapper">
-                {items}
-            </div>
+            <Container className='category_wrapper'>
+                <Row xs={2} md={1} className='category_row'>
+                    {items}
+                </Row>
+            </Container>
         )
     }
 }

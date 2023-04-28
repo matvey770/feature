@@ -2,7 +2,57 @@
     animation: 1s show ease;
 }
 
+.app {
+    &_products {
+        max-width: 1296px;
+    }
+}
+
 @keyframes show {
     from { opacity: 0 }
     to { opacity: 1 }
+}
+
+@media (max-width: 1200px) {
+    .app {
+        &_products {
+            &-row {
+                display: flex;
+                max-width: 936px;
+                margin: 0 auto;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .app {
+        &_products {
+            &-row {
+                margin: 0 auto;
+                max-width: 300px;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .app {
+        &_products {
+            &-row {
+                max-width: 250px;
+            }
+        }
+    }
+}
+
+@media (max-width: 390px) {
+    .app {
+        &_products {
+            &-row {
+                max-width: 100%;
+            }
+        }
+    }
 }

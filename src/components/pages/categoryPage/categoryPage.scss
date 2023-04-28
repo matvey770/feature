@@ -1,16 +1,23 @@
-.category {
+.category {        
     &_wrapper {
-        animation: 1s show ease;
+        margin-top: 40px;
         max-width: 1296px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: start;
     }
-    &_item {
-       padding-left: 20px;
+    &_row {
+        padding-left: 3px;
+        display: flex;
+        justify-content: space-between;
     }
 }
 @keyframes show {
     from { opacity: 0 }
     to { opacity: 1 }
 }
+
+// @media (max-width: 992px) {
+//     .category {
+//         &_wrapper {
+//             justify-content: center;
+//         }
+//     }
+// }

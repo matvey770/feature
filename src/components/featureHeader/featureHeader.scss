@@ -1,5 +1,3 @@
-
-
 .appheader {
     &_logo {
         font-family: 'Guerrilla';
@@ -25,6 +23,9 @@
         font-size: 16px;
         text-decoration: none;
     }
+    &_cartmobile {
+        display: none;
+    }
     &_wrapper {
         display: flex;
     }
@@ -41,6 +42,29 @@
         border-radius: 100%;
         .active {
             visibility: visible;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .link {
+        &_cart {
+            display: none;
+        }
+        &_cartmobile {
+            text-decoration: none;
+            display: block;
+            margin-right: auto;
+        }
+        &_cart-icon {
+            width: 25px;
+        }
+        &_counter {
+            font-size: 10px;
+            margin-left: 2px;
+            margin-top: -8px;
+            width: 16px;
+            height: 16px;
         }
     }
 }

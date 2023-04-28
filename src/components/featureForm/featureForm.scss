@@ -69,3 +69,65 @@
 .error {
     color: #e53e3e;
 }
+
+@media (max-width: 992px) {
+    .cart {
+        &__purchase {
+            &_form {
+                width: 688px;
+                &-name {
+                    width: 130px;
+                }
+                &-input {
+                    width: 199px;
+                    margin-left: 80px;
+                }
+                label {
+                    margin-right: 160px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    .cart {
+        &__purchase {
+            display: block;
+            &_form {
+                width: 768px;
+                &-input {
+                    width: 300px;
+                    margin-left: 130px;
+                }
+                label {
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .cart {
+        &__purchase {
+            &_form {
+                width: 576px;
+            }
+        }
+    }
+}
+
+@media (max-width: 390px) {
+    .cart {
+        &__purchase {
+            &_form {
+                width: 390px;
+                &-input {
+                    width: 300px;
+                    margin-left: 40px;
+                }
+            }
+        }
+        
+    }
+}

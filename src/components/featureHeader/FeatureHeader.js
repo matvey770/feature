@@ -5,6 +5,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import {Link, NavLink} from 'react-router-dom';
 
+import shoppingCart from '../../img/icons/shopping-cart.png'
+
 import './featureHeader.scss'
 
 const FeatureHeader = ({cart}) => {
@@ -29,12 +31,21 @@ const FeatureHeader = ({cart}) => {
               end
               to="/">
             <div className='appheader_logo'>FEATURE</div>
-            </NavLink>
+      </NavLink>
+      <NavLink
+              className={'link_cartmobile'}
+              end
+              to="/cart">
+              <div className='link_wrapper'>
+                <img className='link_cart-icon' src={shoppingCart} alt="cart"></img> 
+                <div className='link_counter' style={{'visibility' : countVar}}>{count}</div>
+              </div>
+      </NavLink>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: '200px' }}
             navbarScroll
           >
             <NavLink
@@ -49,7 +60,7 @@ const FeatureHeader = ({cart}) => {
                   className={'link'}
                   end
                   to="/t-shirts">
-                  Новинки
+                  Футболки
                 </NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item>

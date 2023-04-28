@@ -35,7 +35,7 @@ const FeatureMainPage = ({onAdd}) => {
                 <div className='animate'>
                     <MainSlider/>
                     <Container className='app_products'>
-                        <Row xs={2} md={4} className='app_products-row'>
+                        <Row xs={2} md={1} className='app_products-row'>
                             <FeatureCards onAdd={onAdd} className='app_products-row_item' product={data[0]}/>
                             <FeatureCards onAdd={onAdd} className='app_products-row_item' product={data[1]}/>
                             <FeatureCards onAdd={onAdd} className='app_products-row_item' product={data[2]}/>

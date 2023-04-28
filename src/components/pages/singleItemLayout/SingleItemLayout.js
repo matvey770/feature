@@ -12,6 +12,8 @@ const SingleItemLayout = ({onAdd, cart, addedItem}) => {
     const [dataSingleItem, setDataSingleItem] = useState([])
     const [status, setStatus] = useState('idle')
 
+    const [showImg, setShowImg] = useState('')
+
     useEffect(() => {
         const fetchData = async () => { //СДЕЛАТЬ ЧЕРЕЗ HTTP.HOOK
             setStatus('fetching');
@@ -169,17 +171,45 @@ const SingleItemLayout = ({onAdd, cart, addedItem}) => {
             </>
         )
     }
+
+    const ImgContainer = () => {
+
+        const onShowImg = (event) => {
+            const id = event.target.id
+            setShowImg(id)
+            console.log(showImg)
+        }
+
+
+        return (
+            <div onClick={onShowImg} className="singleitem_container">
+                {img.map((item, i) => {
+                    return (
+                        <img id={i} className="singleitem_container-img" src={item} alt='img 1'></img>
+                    )
+                })}
+            </div>
+        )
+    }
+
+    const BigImg = () => {
+        const onExitImg = () => {
+            setShowImg('')
+        }
+        return (
+            <div onClick={onExitImg} className='big_wrapper'>
+                {/* <button onClick={onExitImg} className='big_exit'>X</button> */}
+                <img className="big_img" src={img[showImg]} alt='img'></img>
+            </div>
+        )
+    }
     
     if (status === 'fetched') {
         return (
             <div className="singleitem">
+                {showImg ? <BigImg/> : null}
                 <div className="singleitem__wrapper">
-                    <div className="singleitem_container">
-                        <img className="singleitem_container-img" src={img} alt='img 1'></img>
-                        <img className="singleitem_container-img" src={merch} alt='img 2'></img>
-                        <img className="singleitem_container-img" src={merch} alt='img 3'></img>
-                        <img className="singleitem_container-img" src={merch} alt='img 4'></img>
-                    </div>
+                    <ImgContainer/>
                     <div className="singleitem__descr">
                         <div className="singleitem_label">
                             <div className="singleitem_label-feature">FEATURE</div>

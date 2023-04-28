@@ -24,7 +24,15 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
             const items = cart.map((item, i) => {
                 return (
                     <div key={i} className='cart__item'>
-                        <img className='cart__item-img' src={item.cartImg} alt="itemCart"></img>
+                        <img className='cart__item-img' src={item.cartImg[0]} alt="itemCart"></img>
+                        <div className='cart__item_wrapper'>
+                            <img className='cart__item-imgsmall' src={item.cartImg[0]} alt="itemCart"></img>
+                            <div className='cart__item_quantitysmall'>
+                                <button onClick={() => {reduceCount(i)}} className='cart__item_quantity-reduce'>-</button>
+                                <div className='cart__item_quantity-counter'>{item.cartCounter}</div>
+                                <button onClick={() => {addCount(i)}} className='cart__item_quantity-add'>+</button>
+                            </div>
+                        </div>
                         <div>
                             <div className='cart__item-name'>{item.cartTitle}</div>
                             <div className='cart__item-descr'>{item.cartDescr}</div>
@@ -56,11 +64,12 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
             <div className='cart__cost'>
                 <div className='cart__cost_promo'>
                     <form className='cart__cost_promo-form'>
-                    <div className='cart__cost_promo-text'>Промокод:</div>
+                        <div className='cart__cost_promo-text'>Промокод:</div>
                         <label>
                             <input type="text" name="name" />
-                            <input type="submit" value=""/>
+                            {/* <input type="submit" value=""/> */}
                         </label>
+                        <button className='cart__cost_promo-button'>&#10003;</button>
                     </form>
                 </div>
                 <div className='cart__cost_price'>

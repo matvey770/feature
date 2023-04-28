@@ -59,11 +59,11 @@ const FeatureCards = ({product, onAdd}) => {
     return (
         <Card key={product.id} className='cards'>
             <Link to={`/products/${product.id}`}>
-                <Card.Img variant="top" src={product.img} className="cards_img"/>
+                <Card.Img variant="top" src={product.img[0]} className="cards_img"/>
             </Link>
-            <Card.Body>
+            <Card.Body className='cards_body'>
                 <Card.Title className='text'>{product.title}</Card.Title>
-                    <Card.Text>
+                    <Card.Text className='cards_descr'>
                         {product.descr}
                     </Card.Text>
                 <div className='cards_footer'>
