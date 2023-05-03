@@ -1,8 +1,13 @@
 .cards {
     width: 300px;
     padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     &_img {
         height: 24rem;
+    }
+    &_img:hover {
+        transition: all 100ms ease-in;
+        filter: opacity(80%);
     }
     &_descr {
         color: #999999;
@@ -20,6 +25,7 @@
             margin-left: -2rem;
         }
         &-button {
+            font-size: 15px;
             line-height: 12px;
             height: 40px;
             width: 100px;

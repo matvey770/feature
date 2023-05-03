@@ -1,4 +1,4 @@
-import {React, useEffect} from 'react'
+import {React, useEffect, useState} from 'react'
 
 import FeatureForm from '../featureForm/FeatureForm';
 
@@ -8,7 +8,14 @@ import credit from "../../img/icons/creditcard.png"
 import courier from "../../img/icons/courier.png"
 import launch from "../../img/icons/launch.png"
 
+import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
+import * as Yup from 'yup'
+
 const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
+
+    const [typePromo, setTypePromo] = useState(false)
+
+    let discount = 0.9
 
     useEffect(() => {
         console.log('cartEffect')
@@ -54,28 +61,56 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
             )
     }
 
+    const PromoForm = () => {
+        let promoCode = 'test'
+
+        return (
+            <Formik
+            initialValues = {{
+                promo: '',
+            }}
+            onSubmit={value => {
+                if (value.promo == promoCode) {
+                    setTypePromo(true)
+                }
+            }}
+            >
+                <Form className='cart__cost_promo-form'>
+                    <div className='cart__cost_promo-text'>Промокод:</div>
+                    <Field
+                        className='cart__cost_promo-input'
+                        id="promo"
+                        type="text"
+                        name="promo">
+                    </Field>
+                    <button type="submit" className={`cart__cost_promo-button ${typePromo ? 'promo-true' : ''}`}>&#10003;</button>
+                </Form>
+            </Formik>
+        )
+    }
+
     const CartCostPrice = () => {
-        let totalPrice = 0;
+        let totalPrice = 0
+        let discountValue = 0
         cart.map(item => {
             totalPrice = totalPrice + item.cartCounter * item.cartPrice
         })
 
+        if (typePromo) {
+            discountValue = totalPrice - (totalPrice * discount)
+            totalPrice = totalPrice * discount
+        }
+        
+
         return (
             <div className='cart__cost'>
                 <div className='cart__cost_promo'>
-                    <form className='cart__cost_promo-form'>
-                        <div className='cart__cost_promo-text'>Промокод:</div>
-                        <label>
-                            <input type="text" name="name" />
-                            {/* <input type="submit" value=""/> */}
-                        </label>
-                        <button className='cart__cost_promo-button'>&#10003;</button>
-                    </form>
+                    <PromoForm/>
                 </div>
                 <div className='cart__cost_price'>
                     <div className='cart__cost_price-item'>Скидка:</div>
                     <div className='cart__cost_price-item'>К оплате:</div>
-                    <div className='cart__cost_price-discount'>0 р.</div>
+                    <div className='cart__cost_price-discount'>{discountValue} р.</div>
                     <div className='cart__cost_price-value'>{totalPrice} р.</div>
                 </div>
             </div>
@@ -105,7 +140,7 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
                 <h2 className='cart_label'>Оформление заказа(зарегистрируйтесь или войдите)</h2>
                 <div className='cart_line'></div>
                 <div className='cart__purchase'>
-                    <FeatureForm cart={cart} clearCart={clearCart}/>
+                    <FeatureForm cart={cart} clearCart={clearCart} typePromo={typePromo}/>
                     <div className='cart__descr'>
                         <div className='cart__descr_wrapper'>
                             <img className='cart__descr-img' src={credit} alt="credit"></img>

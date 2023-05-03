@@ -35,7 +35,7 @@
         margin-top: 18px;
         margin-bottom: 1px;
         width: 100%;
-        height: 0.1px;
+        height: 1px;
         background-color: #999999;
     }
     &__cost {
@@ -69,15 +69,13 @@
                 color: #FFFFFF;
                 border: 0;
             }
-            &-form {
-                input:nth-child(1) {
-                    width: 179px;
-                    height: 28px;
-                    background: #FFFFFF;
-                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                    border: 1px;
-                    border-radius: 7px;
-                }
+            &-input {
+                width: 179px;
+                height: 28px;
+                background: #FFFFFF;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border: 1px;
+                border-radius: 7px;
             }
         }
         &_price {
@@ -175,7 +173,7 @@
             display: flex;
             width: 100px;
             &-counter {
-                padding-top: 16px;
+                padding-top: 18px;
                 font-weight: 700;
                 font-size: 16px;
                 line-height: 21px;
@@ -213,7 +211,7 @@
             }
         }
         &-price {
-            width: 65px;
+            width: 70px;
             margin-left: 80px;
             margin-right: 40px;
             padding-top: 16px;
@@ -223,6 +221,10 @@
             color: #000000;
         }
     }
+}
+
+.promo-true {
+    background: green;
 }
 
 @keyframes show {
@@ -412,7 +414,6 @@
                     font-size: 20px;
                 }
                 &-add {
-                    // padding-left: 1px;
                     font-size: 20px;
                     width: 20px;
                     height: 20px;
@@ -453,11 +454,9 @@
             &_promo {
                 width: 150px;
                 margin-left: 10px;
-                &-form {
-                    input:nth-child(1) {
-                        margin-top: 11px;
-                        width: 100px;
-                    }
+                &-input {
+                    margin-top: 11px;
+                    width: 100px;
                 }
                 &-button {
                     width: 30px;

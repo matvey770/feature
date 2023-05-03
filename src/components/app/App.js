@@ -7,10 +7,12 @@ import FeatureCart from '../featureCart/FeatureCart';
 import FeatureMainPage from '../pages/featureMainPage/FeatureMainPage';
 import SingleItemLayout from '../pages/singleItemLayout/SingleItemLayout';
 import CategoryPage from '../pages/categoryPage/CategoryPage';
+import InfoPage from '../pages/infoPage/InfoPage';
 
 import './App.scss'
 
 const App = () => {
+
   const [cart, setCart] = useState([])
   const [cartCount, setCartCount] = useState(1) //количество продукта
   const [addedItem, setAddedItem] = useState(false) //добавлен ли товар в корзину (для кнопки в singleItemLayout)
@@ -94,6 +96,7 @@ const App = () => {
             <Route path="/hoodies" element={<CategoryPage onAdd={addCartItem} dataType='hoodie'/>}/>
             <Route path="/products/:id" element={<SingleItemLayout onAdd={addCartItem} cart={cart} addedItem={addedItem}/>}/>
             <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
+            <Route path="/about" element={<InfoPage/>}/>
             <Route path="/cart" 
                    element={<FeatureCart 
                               cart={cart} 

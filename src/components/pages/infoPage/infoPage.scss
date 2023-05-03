@@ -1,0 +1,52 @@
+.infopage {
+    &_container {
+        margin: 20px auto;
+        max-width: 1296px;
+    }
+    &_title {
+        margin-top: 20px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 21px;
+    }
+    &_text {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: #999999;
+    }
+    &_secondary-title {
+        color: black;
+        font-weight: 700;
+    }
+    &_secondary-text {
+        margin-top: 10px;
+        color: #999999;
+    }
+    &_block {
+        width: 600px;
+    }
+    &_icon {
+        width: 28px;
+    }
+}
+
+@media (max-width: 992px) {
+    .infopage {
+        &_container {
+            margin-left: 5px;
+        }
+        &_text {
+            display: block;
+        }
+        &_block {
+            margin-top: 20px;
+            width: auto;
+        }
+        &_wrapper {
+            margin-left: 5px;
+            margin-top: 20px;
+        }
+    }
+}

@@ -19,7 +19,7 @@ const TextInput = ({label, ...props}) => {
     )
 }
 
-const FeatureForm = ({cart, clearCart}) => {
+const FeatureForm = ({cart, clearCart, typePromo}) => {
     const [emptyCartError, setEmptyCartError] = useState(false)
     return (
         <Formik
@@ -51,7 +51,7 @@ const FeatureForm = ({cart, clearCart}) => {
                 orderId: 1,
                 buyerData: values,
                 orderData: cart,
-                promo: false, // вставить из промокода
+                promo: typePromo,
                 totalCost: 10000 // вставить из корзины
             }
             if (order.orderData.length < 1) {
