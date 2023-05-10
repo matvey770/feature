@@ -73,7 +73,7 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
                 promo: '',
             }}
             onSubmit={value => {
-                if (value.promo == promoCode) {
+                if (value.promo === promoCode) {
                     setTypePromo(true)
                 }
             }}
