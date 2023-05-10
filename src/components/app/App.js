@@ -1,13 +1,13 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import {React, useState, useEffect} from 'react';
-import FeatureHeader from '../featureHeader/FeatureHeader';
-import FeatureFooter from '../featureFooter/FeatureFooter';
 import FeatureCart from '../featureCart/FeatureCart';
 import FeatureMainPage from '../pages/featureMainPage/FeatureMainPage';
 import SingleItemLayout from '../pages/singleItemLayout/SingleItemLayout';
 import CategoryPage from '../pages/categoryPage/CategoryPage';
 import InfoPage from '../pages/infoPage/InfoPage';
+import AdminPanel from '../pages/adminPanel/AdminPanel';
+import Spinner from '../spinner/Spinner';
 
 import './App.scss'
 
@@ -89,14 +89,13 @@ const App = () => {
   return (
     <Router>
       <div className='app'>    
-        <FeatureHeader cart={cart}/>
           <Routes>
-            <Route path="/new" element={<CategoryPage onAdd={addCartItem} dataType='new'/>}/>
-            <Route path="/t-shirts" element={<CategoryPage onAdd={addCartItem} dataType='t-shirt'/>}/>
-            <Route path="/hoodies" element={<CategoryPage onAdd={addCartItem} dataType='hoodie'/>}/>
+            <Route path="/new" element={<CategoryPage cart={cart} onAdd={addCartItem} dataType='new'/>}/>
+            <Route path="/t-shirts" element={<CategoryPage cart={cart} onAdd={addCartItem} dataType='t-shirt'/>}/>
+            <Route path="/hoodies" element={<CategoryPage cart={cart} onAdd={addCartItem} dataType='hoodie'/>}/>
             <Route path="/products/:id" element={<SingleItemLayout onAdd={addCartItem} cart={cart} addedItem={addedItem}/>}/>
-            <Route path="/" element={<FeatureMainPage onAdd={addCartItem}/>}/>
-            <Route path="/about" element={<InfoPage/>}/>
+            <Route path="/" element={<FeatureMainPage cart={cart} onAdd={addCartItem}/>}/>
+            <Route path="/about" element={<InfoPage cart={cart}/>}/>
             <Route path="/cart" 
                    element={<FeatureCart 
                               cart={cart} 
@@ -105,11 +104,10 @@ const App = () => {
                               clearCart={clearCart}
                             />}
             />
+            <Route path='/admin-panel' element={<AdminPanel/>}/>
           </Routes>
-        <FeatureFooter/>
       </div>
     </Router>
-
   )
 }
 

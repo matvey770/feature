@@ -2,6 +2,8 @@ import {React, useState} from 'react'
 import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
 import * as Yup from 'yup'
 
+import config from '../../config.json'
+
 import './featureForm.scss'
 
 const TextInput = ({label, ...props}) => {
@@ -20,7 +22,30 @@ const TextInput = ({label, ...props}) => {
 }
 
 const FeatureForm = ({cart, clearCart, typePromo}) => {
+
     const [emptyCartError, setEmptyCartError] = useState(false)
+
+    let options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timezone: 'UTC',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    }
+
+    let discount = config.DISCOUNT
+    let totalPrice = 0
+    cart.map(item => {
+        totalPrice = totalPrice + item.cartCounter * item.cartPrice
+    })
+
+    if (typePromo) {
+        totalPrice = totalPrice * discount
+    }
+    
+
     return (
         <Formik
         initialValues = {{
@@ -49,10 +74,11 @@ const FeatureForm = ({cart, clearCart, typePromo}) => {
         onSubmit={values => {
             const order = {
                 orderId: 1,
+                date: new Date().toLocaleString("ru", options),
                 buyerData: values,
                 orderData: cart,
                 promo: typePromo,
-                totalCost: 10000 // вставить из корзины
+                totalCost: totalPrice // вставить из корзины
             }
             if (order.orderData.length < 1) {
                 setEmptyCartError(true)
@@ -61,6 +87,13 @@ const FeatureForm = ({cart, clearCart, typePromo}) => {
                 console.log(emptyCartError)
                 clearCart()                                     // переход на оплату
                 console.log(JSON.stringify(order, null, 2))
+                fetch('http://localhost:3002/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                      },
+                    body: JSON.stringify(order, null, 2)
+                })
             }
         }}
         >

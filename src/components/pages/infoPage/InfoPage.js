@@ -1,4 +1,8 @@
 import './infoPage.scss'
+
+import FeatureHeader from '../../featureHeader/FeatureHeader'
+import FeatureFooter from '../../featureFooter/FeatureFooter'
+
 import telephone from '../../../img/icons/ringing.png'
 import mail from '../../../img/icons/mail.png'
 import location from '../../../img/icons/location.png'
@@ -9,10 +13,12 @@ import money from '../../../img/icons/money.png'
 import file from '../../../img/icons/file.png'
 import cross from '../../../img/icons/cross.png'
 
-const InfoPage = () => {
+const InfoPage = ({cart}) => {
     window.scrollTo(0, 0)
 
     return (
+        <>
+        <FeatureHeader cart={cart}/>
         <div className="infopage_container">
             <div className="infopage_about">
                 <div className="infopage_title"><img className='infopage_icon' src={cross} alt='cross'></img> О магазине</div>
@@ -211,9 +217,9 @@ const InfoPage = () => {
                 </div>
                 <div className='cart_line'></div>
             </div>
-            
-            
         </div>
+        <FeatureFooter/>
+        </>
     )
 }
 

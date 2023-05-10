@@ -1,0 +1,74 @@
+.console {
+    &_wrapper {
+        display: flex;
+        max-width: 1296px;
+        margin: 200px auto;
+    }
+    &_buttons {
+        width: 250px;
+        height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &_button {
+        padding-bottom: 4px;
+        margin-top: 25px;
+        width: 130px;
+        height: 70px;
+        background: #1B1F23;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 7px;
+        font-size: 18px;
+        line-height: 21px;
+        color: #FFFFFF;
+        border: 0;
+    }
+    &_product {
+        display: flex;
+        &-wrapper {
+            width: 650px;
+            padding: 10px;
+            background-color: rgba(202, 202, 202, 0.25);
+            margin-top: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
+        &-shell {
+            display: none;
+        }
+        &-delete {
+            display: none;
+            background-color: rgba(202, 202, 202, 0.25);
+            line-height: 0;
+            font-size: 40px;
+            color:#1B1F23;
+            margin-left: 6px;
+            margin-top: 10px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            img {
+                width: 20px;
+            }
+        }
+    }
+}
+
+.line {
+    margin-left: 3px;
+    background-color: red;
+    width: 25px;
+    height: 2px;
+}
+.line:nth-child(1) {
+    transform: rotateZ(135deg) translate(1px, -1.5px);
+}
+.line:nth-child(2) {
+    transform: rotateZ(45deg)
+}
+
+.activeshell {
+    display: block;
+}

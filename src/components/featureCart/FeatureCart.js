@@ -1,6 +1,10 @@
 import {React, useEffect, useState} from 'react'
 
 import FeatureForm from '../featureForm/FeatureForm';
+import FeatureFooter from '../featureFooter/FeatureFooter';
+import FeatureHeader from '../featureHeader/FeatureHeader';
+
+import config from '../../config.json'
 
 import './featureCart.scss'
 
@@ -8,14 +12,13 @@ import credit from "../../img/icons/creditcard.png"
 import courier from "../../img/icons/courier.png"
 import launch from "../../img/icons/launch.png"
 
-import { Formik, Form, Field, ErrorMessage, useField } from 'formik'
-import * as Yup from 'yup'
+import { Formik, Form, Field } from 'formik'
 
 const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
 
     const [typePromo, setTypePromo] = useState(false)
 
-    let discount = 0.9
+    let discount = config.DISCOUNT
 
     useEffect(() => {
         console.log('cartEffect')
@@ -62,7 +65,7 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
     }
 
     const PromoForm = () => {
-        let promoCode = 'test'
+        let promoCode = config.PROMOCODE
 
         return (
             <Formik
@@ -125,6 +128,8 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
     }
 
     return (
+        <>
+        <FeatureHeader cart={cart}/>
         <div className='cart_wrapper'>
             <h2 className='cart_label'>ОФОРМЛЕНИЕ ЗАКАЗА</h2>
             <div className='cart_title'>
@@ -166,6 +171,8 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
                     </div>
                 </div>
         </div>
+        <FeatureFooter/>
+        </>
     )
 }
 

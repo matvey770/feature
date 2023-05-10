@@ -51,14 +51,14 @@
     .link {
         &_cart {
             display: none;
+            &-icon {
+                width: 25px;
+            }
         }
         &_cartmobile {
             text-decoration: none;
             display: block;
             margin-right: auto;
-        }
-        &_cart-icon {
-            width: 25px;
         }
         &_counter {
             font-size: 10px;

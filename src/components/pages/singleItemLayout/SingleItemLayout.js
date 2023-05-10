@@ -1,6 +1,9 @@
 import {React, useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 
+import FeatureFooter from '../../featureFooter/FeatureFooter';
+import FeatureHeader from '../../featureHeader/FeatureHeader';
+
 import './singleItemLayout.scss'
 
 import merch from '../../../img/merch/merch_item_1.png'
@@ -206,6 +209,8 @@ const SingleItemLayout = ({onAdd, cart, addedItem}) => {
     
     if (status === 'fetched') {
         return (
+            <>
+            <FeatureHeader cart={cart}/>
             <div className="singleitem">
                 {showImg ? <BigImg/> : null}
                 <div className="singleitem__wrapper">
@@ -223,6 +228,8 @@ const SingleItemLayout = ({onAdd, cart, addedItem}) => {
                     </div>
                 </div>
             </div>
+            <FeatureFooter/>
+            </>
         )
     } else {
         return (

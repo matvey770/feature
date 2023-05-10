@@ -2,6 +2,8 @@ import {React, useEffect, useState} from 'react';
 
 import MainSlider from '../../mainSlider/MainSlider';
 import FeatureCards from '../../featureCards/FeatureCards';
+import FeatureHeader from '../../featureHeader/FeatureHeader';
+import FeatureFooter from '../../featureFooter/FeatureFooter';
 
 import Spinner from '../../spinner/Spinner';
 
@@ -10,7 +12,7 @@ import Row from 'react-bootstrap/Row';
 
 import './featureMainPage.scss'
 
-const FeatureMainPage = ({onAdd}) => {
+const FeatureMainPage = ({onAdd, cart}) => {
 
     const [status, setStatus] = useState('idle');
     const [data, setData] = useState([]);
@@ -33,6 +35,7 @@ const FeatureMainPage = ({onAdd}) => {
         return (
             <>
                 <div className='animate'>
+                    <FeatureHeader cart={cart}/>
                     <MainSlider/>
                     <Container className='app_products'>
                         <Row xs={2} md={1} className='app_products-row'>
@@ -42,6 +45,7 @@ const FeatureMainPage = ({onAdd}) => {
                             <FeatureCards onAdd={onAdd} className='app_products-row_item' product={data[3]}/>
                         </Row>
                     </Container>
+                    <FeatureFooter/>
                 </div>
             </>
         )

@@ -1,6 +1,8 @@
 import {React, useState, useEffect} from "react";
 
 import FeatureCards from '../../featureCards/FeatureCards';
+import FeatureFooter from "../../featureFooter/FeatureFooter";
+import FeatureHeader from "../../featureHeader/FeatureHeader";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,7 +10,7 @@ import Row from 'react-bootstrap/Row';
 import './categoryPage.scss'
 
 
-const CategoryPage = ({onAdd, dataType}) => {
+const CategoryPage = ({cart, onAdd, dataType}) => {
 
     const [status, setStatus] = useState('idle');
     const [data, setData] = useState([]);
@@ -35,11 +37,16 @@ const CategoryPage = ({onAdd, dataType}) => {
 
     if (status === 'fetched') {
         return (
-            <Container className='category_wrapper'>
-                <Row xs={2} md={1} className='category_row'>
-                    {items}
-                </Row>
-            </Container>
+            <>
+                <FeatureHeader cart={cart}/>
+                <Container className='category_wrapper'>
+                    <Row xs={2} md={1} className='category_row'>
+                        {items}
+                    </Row>
+                </Container>
+                <FeatureFooter/>
+            </>
+
         )
     }
 }
