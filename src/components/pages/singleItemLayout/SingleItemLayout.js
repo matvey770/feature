@@ -22,7 +22,7 @@ const SingleItemLayout = ({onAdd, cart, addedItem}) => {
             setStatus('fetching');
             const response = await fetch(`https://6447fe3f7bb84f5a3e4f662e.mockapi.io/products`);
             const dataSingleItem = await response.json();
-            setDataSingleItem(dataSingleItem[id-1]);
+            setDataSingleItem(dataSingleItem[id]);
             setStatus('fetched');
         };
     
@@ -178,19 +178,17 @@ const SingleItemLayout = ({onAdd, cart, addedItem}) => {
     const ImgContainer = () => {
 
         const onShowImg = (event) => {
-            const id = event.target.id
-            setShowImg(id)
-            console.log(showImg)
+            const idImg = event.target.id
+            setShowImg(idImg)
         }
 
 
         return (
             <div onClick={onShowImg} className="singleitem_container">
-                {img.map((item, i) => {
-                    return (
-                        <img id={i} className="singleitem_container-img" src={item} alt='img 1'></img>
-                    )
-                })}
+                <img id='1' className="singleitem_container-img" src={`../img/products/${id}/1.jpg`} alt='img 1'></img>
+                <img id='2' className="singleitem_container-img" src={`../img/products/${id}/2.jpg`} alt='img 2'></img>
+                <img id='3' className="singleitem_container-img" src={`../img/products/${id}/3.jpg`} alt='img 3'></img>
+                <img id='4' className="singleitem_container-img" src={`../img/products/${id}/4.jpg`} alt='img 4'></img>
             </div>
         )
     }
@@ -202,7 +200,7 @@ const SingleItemLayout = ({onAdd, cart, addedItem}) => {
         return (
             <div onClick={onExitImg} className='big_wrapper'>
                 {/* <button onClick={onExitImg} className='big_exit'>X</button> */}
-                <img className="big_img" src={img[showImg]} alt='img'></img>
+                <img className="big_img" src={`../img/products/${id}/${showImg}.jpg`} alt='img'></img>
             </div>
         )
     }

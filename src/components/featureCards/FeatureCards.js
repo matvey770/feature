@@ -10,7 +10,7 @@ import './featureCards.scss'
 const FeatureCards = ({product, onAdd}) => {
 
     const [activeSize, setActiveSize] = useState(false)
-    const [activeAdd, setActiveAdd] = useState(false);
+    const [activeAdd, setActiveAdd] = useState(false)
 
     useEffect(() => { //таймер "товар добавлен в корзину"
         if (activeAdd) {
@@ -59,7 +59,7 @@ const FeatureCards = ({product, onAdd}) => {
     return (
         <Card key={product.id} className='cards'>
             <Link to={`/products/${product.id}`}>
-                <Card.Img variant="top" src={product.img[0]} className="cards_img"/>
+                <Card.Img variant="top" src={`img/products/${product.id}/1.jpg`} className="cards_img"/>
             </Link>
             <Card.Body className='cards_body'>
                 <Card.Title className='text'>{product.title}</Card.Title>

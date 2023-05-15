@@ -34,9 +34,9 @@ const FeatureCart = ({cart, addCount, reduceCount, clearCart}) => {
             const items = cart.map((item, i) => {
                 return (
                     <div key={i} className='cart__item'>
-                        <img className='cart__item-img' src={item.cartImg[0]} alt="itemCart"></img>
+                        <img className='cart__item-img' src={`../img/products/${item.cartId}/1.jpg`} alt="itemCart"></img>
                         <div className='cart__item_wrapper'>
-                            <img className='cart__item-imgsmall' src={item.cartImg[0]} alt="itemCart"></img>
+                            <img className='cart__item-imgsmall' src={`img/products/${item.cartId}/1.jpg`} alt="itemCart"></img>
                             <div className='cart__item_quantitysmall'>
                                 <button onClick={() => {reduceCount(i)}} className='cart__item_quantity-reduce'>-</button>
                                 <div className='cart__item_quantity-counter'>{item.cartCounter}</div>

@@ -73,7 +73,6 @@ const FeatureForm = ({cart, clearCart, typePromo}) => {
         })}
         onSubmit={values => {
             const order = {
-                orderId: 1,
                 date: new Date().toLocaleString("ru", options),
                 buyerData: values,
                 orderData: cart,
